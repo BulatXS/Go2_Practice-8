@@ -31,8 +31,14 @@ jobs:
       - name: Sync workspace
         run: go work sync
 
-      - name: Run tests
-        run: go test ./...
+      - name: Run tests for auth
+        run: cd services/auth && go test ./...
+
+      - name: Run tests for tasks
+        run: cd services/tasks && go test ./...
+
+      - name: Run tests for shared
+        run: cd shared && go test ./...
 
       - name: Build auth
         run: go build ./services/auth/cmd/auth
